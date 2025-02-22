@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Discovered Plants</title>
+    <link rel="stylesheet" href="home/index.css"/>
+    <style>
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌱 All Discovered Plants</h1>
+    
+    <!-- Main container for plants -->
+    <div id="plants-container" class="plant-grid">
+        <!-- Plants will be added here dynamically -->
+    </div>
+
+    <script>
+        // Call this after page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSavedPlants();  // Your existing function
+        });
+    </script>
+    <script src="home/index.js"></script>
+</body>
+</html>
