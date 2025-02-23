@@ -115,50 +115,40 @@ window.onclick = function(event) {
 }
 
 
-dropdownButton.addEventListener('click',() => {
-    B.style.display = "block";
-    C.style.display = "block";
-    
-});
 
-window.addEventListener(element => {
-    if (dropdownContent.style.display === "none") {
-        dropdownContent.style.display = "none";
-    }
-    else{ 
-        dropdownButton.style.display = "none";
-    }
-});
-
-function moveImageToTarget(image, targetSpot) {
-    targetSpot.appendChild(image);
+function MyFunction() {
+    document.querySelector(".dropdown-content").classList.toggle("show");
 }
 
-function moveImageToOriginal(image, originalPosition) {
-    originalPosition.parent.insertBefore(image, originalPosition.parent.children[originalPosition.index]);
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+    if (!event.target.matches('.dropdown-button')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
 }
 
-dropdownImages.forEach(image => {
-    let isMoved = false;
-    let originalParent = image.parentNode;
-    let originalPosition = {
-        index: Array.from(originalParent.children).indexOf(image),
-        parent: originalParent
-    };
-    const targetSpotId = image.dataset.target;
-    const targetSpot = document.getElementById(targetSpotId);
 
-    if (targetSpot) {
-        image.addEventListener('click', () => {
-            if (!isMoved) {
-                moveImageToTarget(image, targetSpot);
-                isMoved = true;
-            } else {
-                moveImageToOriginal(image, originalPosition);
-                isMoved = false;
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdownImages = document.querySelectorAll('.dropdown-image');
+
+    dropdownImages.forEach(image => {
+        image.addEventListener('click', function() {
+            const targetId = this.dataset.target;
+            const targetSpot = document.getElementById(targetId);
+
+            if (targetSpot) {
+                // Clone the image to avoid removing it from the dropdown
+                const clonedImage = this.cloneNode(true);
+                targetSpot.innerHTML = ''; // Clear previous content
+                targetSpot.appendChild(clonedImage);
             }
         });
-    } else {
-        console.warn(`Target spot with id ${targetSpotId} not found.`);
-    }
+    });
 });
