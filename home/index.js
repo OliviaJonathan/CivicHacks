@@ -134,19 +134,41 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 //dropdown button
-const dropdownButton = document.querySelector('.dropdown-button');
-const dropdownContent = document.querySelector('.dropdown-content');
-const dropdownImages = document.querySelectorAll('.dropdown-image');
+const B = document.querySelectorAll('.dropdown-button');
+const C = document.querySelectorAll('.dropdown-content');
+const I = document.querySelectorAll('.dropdown-images');
 
-dropdownButton.addEventListener('click', () => {
-    dropdownContent.classList.toggle('show');
+function MyFunction() {
+    document.querySelector(".dropdown-content").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+    if (!event.target.matches('.dropdown-button')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
+
+
+dropdownButton.addEventListener('click',() => {
+    B.style.display = "block";
+    C.style.display = "block";
+    
 });
 
-window.addEventListener('click', (event) => {
-    if (!event.target.matches('.dropdown-button')) {
-        if (dropdownContent.classList.contains('show')) {
-            dropdownContent.classList.remove('show');
-        }
+window.addEventListener(element => {
+    if (dropdownContent.style.display === "none") {
+        dropdownContent.style.display = "none";
+    }
+    else{ 
+        dropdownButton.style.display = "none";
     }
 });
 

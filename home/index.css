@@ -98,12 +98,19 @@ main{
   }
   
   .dropdown-content {
-    display: block;
+    display: none;
     position: absolute;
     background-color: #c8aa8b;
     border: 1px solid #4f4134;
     z-index: 1;
   }
+
+  .dropdown-content img {
+    padding: 12px 16px;
+    display: block;
+}
+.show {
+    display: block;}
 
   .dropdown-content.show{
     display: block;
