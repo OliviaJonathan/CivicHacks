@@ -62,40 +62,16 @@ async function identifyPlant(file) {
         console.log("Base64 Image Data (First 100 chars):", base64Image.substring(0, 100));
     
         const apiKey = "QV0GK7zdEok9dVWzJecF2c3A5XkyYhfsgc3WG9xV7RLJBq06dq";
-        const apiUrl = "https://plant.id/api/v3/identification";
-
-        // const requestBody = {
-        //     images: [`data:image/jpeg;base64,${base64Image}`],
-        //     latitude: 0,  
-        //     longitude: 0,
-        //     similar_images: true,
-        //     details: [
-        //         "common_names",
-        //         "url",
-        //         "description",
-        //         "taxonomy",
-        //         "rank",
-        //         "gbif_id",
-        //         "inaturalist_id",
-        //         "image",
-        //         "synonyms",
-        //         "edible_parts",
-        //         "watering",
-        //         "propagation_methods"
-        //     ]
-        // };        
+        const apiUrl = "https://plant.id/api/v3/identification?details=common_names,url,description,taxonomy,rank,gbif_id,inaturalist_id,image,edible_parts,watering,common_uses,cultural_significance&language=en";
 
         const requestBody = {
             images: [base64Image],  // Send only the Base64 data
             latitude: 0,
             longitude: 0,
             similar_images: true,
-            // details: [
-            //     "common_names", "url", "description", "taxonomy", "rank", 
-            //     "gbif_id", "inaturalist_id", "image", "synonyms", 
-            //     "edible_parts", "watering", "propagation_methods"
-            // ]
         };
+
+        console.log("📤 Sending API Request:", JSON.stringify(requestBody, null, 2));
 
         try {
             const response = await fetch(apiUrl, {
