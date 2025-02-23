@@ -5,10 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="070263eb-dd66-4a77-8f8b-b7d7cfd75fb8" name="Changes" comment="undo deletions">
-      <change afterPath="$PROJECT_DIR$/map/map.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/map/map.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/achievements/achievements.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/achievements/achievements.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/achievements/achievements.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Summer2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/badge10plants.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/badge1stplant.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/badgetreehugger.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/badgeunknown.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/home/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/add_plants.html" beforeDir="false" afterPath="$PROJECT_DIR$/camera/add_plants.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/camera.css" beforeDir="false" afterPath="$PROJECT_DIR$/camera/camera.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/camera.html" beforeDir="false" afterPath="$PROJECT_DIR$/camera/camera.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map/map.css" beforeDir="false" afterPath="$PROJECT_DIR$/map/map.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/map/map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/map/map.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +61,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript Debug.achievements.html.executor": "Run",
+    "JavaScript Debug.index.html.executor": "Run",
     "JavaScript Debug.map.html.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -70,8 +83,10 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\sophi\WebstormProjects\civichacks\plantdex" />
+      <recent name="C:\Users\sophi\WebstormProjects\civichacks\src" />
       <recent name="C:\Users\sophi\WebstormProjects\civichacks" />
+      <recent name="C:\Users\sophi\WebstormProjects\civichacks\camera" />
+      <recent name="C:\Users\sophi\WebstormProjects\civichacks\plantdex" />
       <recent name="C:\Users\sophi\WebstormProjects\civichacks\home" />
     </key>
   </component>
@@ -93,7 +108,7 @@
       <workItem from="1740252779686" duration="226000" />
       <workItem from="1740253051002" duration="2025000" />
       <workItem from="1740255427520" duration="891000" />
-      <workItem from="1740256327069" duration="11228000" />
+      <workItem from="1740256327069" duration="16500000" />
     </task>
     <task id="LOCAL-00001" summary="undo deletions">
       <option name="closed" value="true" />

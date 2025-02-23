@@ -1,4 +1,4 @@
-var map = L.map('map').setView([42.35, -71.10], 16);
+var map = L.map('map').setView([42.35, -71.10], 13);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -39,14 +39,28 @@ window.onload = function() {
     }
 
 }
-var plant = L.marker([42.3508421705, -71.1047940329]).bindPopup('<a href="../index.html">Plant</a>').addTo(map);
-    mushroom = L.marker([42.3506749521, -71.1069138493]).bindPopup('Mushroom').addTo(map);
-    protozoa = L.marker([42.3518833024, -71.1200051755]).bindPopup('Mold').addTo(map);
-    Plantae = L.layerGroup([]);
-    Fungi = L.layerGroup([]);
-    Protozoa = L.layerGroup([]);
+
+/*hard coded markers*/
+let grass = L.marker([42.3508421705, -71.1047940329]).bindPopup('<a href="../index.html">Kentucky Bluegrass</a><p>Poa pratensis</p>').addTo(map);
+    mushroom = L.marker([42.3506749521, -71.1069138493]).bindPopup('<a href="../index.html">Mica Cap</a><p>Coprinellus micaceus</p>').addTo(map);
+    /*layer groups*/
+let Grasses = L.layerGroup([grass]);
+    Tree = L.layerGroup([]);
+    Shrub = L.layerGroup([]);
+    Cacti = L.layerGroup([]);
+    Fungi = L.layerGroup([mushroom]);
+    /* layer labels*/
     layers = {
-    Plantae: Plantae,
-    Fungi: Fungi,
-    Protozoa: Protozoa,
+        Grass: Grasses,
+        Fungi: Fungi,
+        Tree: Tree,
+        Shrub: Shrub,
+        Cacti: Cacti
+    }
+function changeLayer(layerName) {
+    Object.values(layers).forEach(layer => map.removeLayer(layer));
+    if (layerName && layers[layerName]) {
+        layers[layerName].addTo(map);
+    }
 }
+
