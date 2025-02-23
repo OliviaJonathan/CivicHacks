@@ -23,6 +23,10 @@ html{
     justify-content: center;
 }
 
+.infocard .p {
+    font-family: 'Times New Roman', Times, serif;
+}
+
 main{
     display: flex;
     flex-direction: column;
@@ -74,15 +78,6 @@ button.saved {
     cursor: not-allowed;
 }
 
-nav{
-    display: flex;
-    flex-direction: row;
-}
-img {
-    max-width: 10vw;
-    max-height: 10vw;
-}
-
 .plant-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -117,6 +112,17 @@ img {
 .plant-icon span {
     text-align: center;
     font-weight: 500;
+}
+
+#plant-image {
+    width: 100%;
+}
+
+.flashcard p {
+    width: 100%;
+    overflow-wrap: break-word; 
+    word-wrap: break-word; 
+    font-family: 'Times New Roman', Times, serif;
 }
 
 /* Flashcard styles */
