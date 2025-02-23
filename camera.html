@@ -8,15 +8,15 @@
 </head>
 <body class="camera">
 
-<h2>Upload a Photo</h2>
+<h2>🪴Upload a Photo</h2>
 
 <div id="container">
 <!-- File input to select image -->
-<input class="item" type="file" id="fileInput" accept="image/*" onchange="previewImage()">
+<input class="upload" type="file" id="fileInput" accept="image/*" onchange="previewImage()">
 
 <!-- Image preview area -->
 <div class="image">
-  <img id="imagePreview" style="max-width: 300px; max-height: 300px;" />
+  <img id="imagePreview" style="max-width: 40vh; max-height: 50vh;" />
 </div>
 
 <script>
@@ -36,6 +36,11 @@
     }
   }
 </script>
+<div id="icon">
+<a href="flashcard.html" target="">
+  <img src="images/notes.png" alt="notepad icon">
+</a>
+</div>
 </div>
 
 </body>
