@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
+html{
+    max-height: 100%;
+    width: 100%;
+    font-family: "Jersey 10", serif;
+    letter-spacing: .2rem;
+}
+.game{
+    height: 100%;
+    background-color: #86A59C;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.flashcard{
+    height: 100%;
+    background-color: #86A59C;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#container{
+    height: 80vh;
+    width: 45vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background-color: #e1e0e0;
+    /*background-image: ;*/
+    background-position: bottom;
+    background-size: 100%;
+    border-radius: 2vw;
+    position: relative; /* position items relative within the container*/
+    padding-bottom: 1vh;
+}
+
+
+.infocard {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 300px;
+}
+
+button {
+    background-color: #388e3c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #2e7d32;
+}
+
+button.saved {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+img {
+    max-height: 10vw;
+}
