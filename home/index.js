@@ -1,32 +1,113 @@
-// Function to load all saved plants in `addplants.html`
-// function loadSavedPlants() {
-//     const plantsContainer = document.getElementById("plants-container");
-//     let savedPlants = JSON.parse(localStorage.getItem("savedPlants")) || [];
+// document.addEventListener("DOMContentLoaded", function () {
+//     console.log("✅ JS is running!");
 
-//     console.log("Saved Plants:", savedPlants);
+//     const plantData = JSON.parse(localStorage.getItem("selectedPlant"));
 
-//     if (!plantsContainer) {
-//         console.error("⚠️ plants-container not found!");
-//         return;
+//     if (plantData) {
+//         console.log("🌱 Retrieved plant data:", plantData);
+
+//         if (plantData.similar_images?.[0]?.url) {
+//             document.getElementById("plant-image").src = plantData.similar_images[0].url;
+//         }
+//         if (plantData.name) document.getElementById("plant-name").textContent = plantData.name;
+//     } else {
+//         console.warn("⚠️ No plant data found.");
 //     }
 
-//     if (savedPlants.length === 0) {
-//         plantsContainer.innerHTML = "<p>No plants discovered yet. Start exploring! 🌿</p>";
-//         return;
-//     }
+//     // Find elements
+//     const identifyButton = document.getElementById("identify-button");
+//     const uploadImage = document.getElementById("upload-image");
 
-//     // Clear existing content
-//     plantsContainer.innerHTML = '';
+//     console.log("🔍 Checking elements...");
+//     console.log("Identify Button:", identifyButton);
+//     console.log("Upload Image Input:", uploadImage);
+
+//     if (identifyButton && uploadImage) {
+//         identifyButton.addEventListener("click", function () {
+//             console.log("🚀 Button Clicked!");
+
+//             const file = uploadImage.files[0]; // Get the selected image file
+//             if (file) {
+//                 console.log("📸 Selected Image:", file.name);
+//                 identifyPlant(file); // Call the function to process the image
+//             } else {
+//                 alert("⚠️ Please select an image first.");
+//             }
+//         });
+//     } else {
+//         console.error("❌ Identify button or file input not found.");
+//     }
+// });
+
+document.getElementById("identify-button").addEventListener("click", function () {
+    const fileInput = document.getElementById("upload-image");
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert("Please upload an image first!");
+        return;
+    }
+
+    identifyPlant(file);
+});
+
+async function identifyPlant(file) {
+    console.log("Preparing image for API...");
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onloadend = async function () {
+        const base64Image = reader.result.split(',')[1]; // Extract base64 data
+        console.log("Base64 Image Data (First 100 chars):", base64Image.substring(0, 100));
     
-//     // Create grid container for plant icons
-//     const gridContainer = document.createElement("div");
-//     gridContainer.classList.add("plant-grid");
-//     plantsContainer.appendChild(gridContainer);
+        const apiKey = "QV0GK7zdEok9dVWzJecF2c3A5XkyYhfsgc3WG9xV7RLJBq06dq";
+        const apiUrl = "https://plant.id/api/v3/identification?details=common_names,url,description,taxonomy,rank,gbif_id,inaturalist_id,image,edible_parts,watering,common_uses,cultural_significance&language=en";
 
-//     savedPlants.forEach(plant => {
-//         addPlantToPage(plant, gridContainer);
-//     });
-// }
+        const requestBody = {
+            images: [base64Image],  // Send only the Base64 data
+            latitude: 0,
+            longitude: 0,
+            similar_images: true,
+        };
+
+        console.log("📤 Sending API Request:", JSON.stringify(requestBody, null, 2));
+
+        try {
+            const response = await fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    "Api-Key": apiKey,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(requestBody)
+            });
+
+            if (!response.ok) {
+                throw new Error(`API request failed with status ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log("🌱 API Response:", result);
+            console.log("🌱 Full API Response:", JSON.stringify(result, null, 2));
+
+            // Extract the first suggestion (most probable plant match)
+            const plantData = result?.result?.classification?.suggestions?.[0];
+
+            if (plantData) {
+                console.log("✅ Saving Plant to Local Storage:", plantData);
+                localStorage.setItem("selectedPlant", JSON.stringify(plantData));
+                window.location.href = "flashcard.html";
+            } else {
+                console.error("❌ No plant suggestion found in API response.");
+            }
+            // No fallback strategy—if no plant is found, nothing happens.
+
+        } catch (error) {
+            console.error("❌ Error identifying plant:", error);
+        }
+    };
+}
 
 // Function to add a single plant card dynamically to `addplants.html`
 function addPlantToPage(plant, container) {
@@ -56,10 +137,10 @@ function loadFlashcard() {
         return;
     }
 
-    document.getElementById("plant-name").textContent = `🌿 ${plant.name}`;
+    document.getElementById("plant-name").textContent = ` ${plant.name}`;
     document.getElementById("plant-image").src = plant.image;
-    document.getElementById("fun-fact").textContent = `📖 ${plant.fact}`;
-    document.getElementById("location").textContent = `🌍 ${plant.location}`;
+    document.getElementById("fun-fact").textContent = ` ${plant.fact}`;
+    document.getElementById("location").textContent = ` ${plant.location}`;
     
     // Update save button state based on whether plant is already saved
     updateSaveButtonState(plant.name);
@@ -153,6 +234,8 @@ function loadSavedPlants() {
         addPlantToPage(plant, plantsContainer);
     });
 }
+
+
 // Initialize pages
 document.addEventListener("DOMContentLoaded", function () {
     if (window.location.pathname.includes("flashcard.html")) {
