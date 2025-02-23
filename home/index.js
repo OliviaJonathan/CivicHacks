@@ -133,3 +133,52 @@ document.addEventListener("DOMContentLoaded", function () {
         loadSavedPlants();
     }
 });
+//dropdown button
+const dropdownButton = document.querySelector('.dropdown-button');
+const dropdownContent = document.querySelector('.dropdown-content');
+const dropdownImages = document.querySelectorAll('.dropdown-image');
+
+dropdownButton.addEventListener('click', () => {
+    dropdownContent.classList.toggle('show');
+});
+
+window.addEventListener('click', (event) => {
+    if (!event.target.matches('.dropdown-button')) {
+        if (dropdownContent.classList.contains('show')) {
+            dropdownContent.classList.remove('show');
+        }
+    }
+});
+
+function moveImageToTarget(image, targetSpot) {
+    targetSpot.appendChild(image);
+}
+
+function moveImageToOriginal(image, originalPosition) {
+    originalPosition.parent.insertBefore(image, originalPosition.parent.children[originalPosition.index]);
+}
+
+dropdownImages.forEach(image => {
+    let isMoved = false;
+    let originalParent = image.parentNode;
+    let originalPosition = {
+        index: Array.from(originalParent.children).indexOf(image),
+        parent: originalParent
+    };
+    const targetSpotId = image.dataset.target;
+    const targetSpot = document.getElementById(targetSpotId);
+
+    if (targetSpot) {
+        image.addEventListener('click', () => {
+            if (!isMoved) {
+                moveImageToTarget(image, targetSpot);
+                isMoved = true;
+            } else {
+                moveImageToOriginal(image, originalPosition);
+                isMoved = false;
+            }
+        });
+    } else {
+        console.warn(`Target spot with id ${targetSpotId} not found.`);
+    }
+});

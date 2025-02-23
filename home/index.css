@@ -66,10 +66,108 @@ main{
   }
   
   .home img {
-    width: 65px;
-    height: 65px;
+    max-width: 5vw;
+    height: auto;
     display: block;
   }
+  
+  .dropdown-container {
+    position: absolute;
+    top: 34vh;
+    right: 1vw;
+  }
+
+  .dropdown{ 
+    position: relative;
+    display: inline-block;
+  }
+
+  
+  .dropdown-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+
+  }
+  
+  .dropdown-button img {
+    max-width: 5vw;
+    height: auto;
+    display: block;
+  }
+  
+  .dropdown-content {
+    display: block;
+    position: absolute;
+    background-color: #c8aa8b;
+    border: 1px solid #4f4134;
+    z-index: 1;
+  }
+
+  .dropdown-content.show{
+    display: block;
+}
+  
+  .dropdown-image {
+    max-width: 5vw;
+    height: auto;
+    display: block;
+    padding: 5px;
+    cursor: pointer; /* Indicate clickability */
+  }
+  
+  .dropdown-image:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .target-spot {
+    position: absolute; /* Or fixed, relative, etc. */
+     /* Adjust as needed */
+    width: 5vw;
+    height: 5vw;
+    border: 2px dashed #ccc; /* Visual indicator */
+  }
+
+  #target-spot-1 {
+    top: 50vh;
+    left: 2vw;
+  }
+  
+  #target-spot-2 {
+    top: 50vh;
+    left: 10vw;
+  }
+  
+  #target-spot-3 {
+    top: 50vh;
+    left: 18vw;
+  }
+
+  #target-spot-4 {
+    top: 65vh;
+    left: 2vw;
+  }
+  
+  #target-spot-5 {
+    top: 65vh;
+    left: 10vw;
+  }
+  
+  #target-spot-6 {
+    top: 65vh;
+    left: 18vw;
+  }
+  
+  .target-spot img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+  }
+
+ 
 
 .infocard {
     background: #ffffff;
