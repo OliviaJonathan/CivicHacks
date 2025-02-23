@@ -36,13 +36,24 @@ main{
     align-items: flex-end;
     justify-content: center;
     background-color: #e1e0e0;
-    /*background-image: ;*/
+    background-image: url('../src/Background.png');
     background-position: bottom;
     background-size: 100%;
     border-radius: 2vw;
     position: relative; /* position items relative within the container*/
     padding-bottom: 1vh;
 }
+
+
+.infocard {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 313px;
+}
+
 button {
     background-color: #388e3c;
     color: white;
@@ -70,5 +81,72 @@ nav{
 img {
     max-width: 10vw;
     max-height: 10vw;
+}
+
+.plant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.plant-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.plant-icon:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.plant-thumbnail {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.plant-icon span {
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Flashcard styles */
+.infocard {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+#save-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 6px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#save-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+#save-button.saved {
+    background-color: #45a049;
 }
 
