@@ -115,6 +115,9 @@ main{
   .dropdown-content.show{
     display: block;
 }
+.dropdown-content img:hover {
+    background-color: #f1f1f1;
+}
   
   .dropdown-image {
     max-width: 5vw;
