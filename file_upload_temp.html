@@ -6,13 +6,49 @@
     <title>Identify a Plant</title>
     <link rel="stylesheet" href="home/index.css">
 </head>
-<body>
-    <h1>🌱 Identify a Plant</h1>
+<body style="font-family: Arial, sans-serif; background-color: #f7f7f7; padding: 20px; text-align: center;">
+    <h1 style="font-size: 36px; color: #4CAF50;">🌱 Identify a Plant</h1>
+    <h2 style="font-size: 24px; color: #333;">Upload a Photo</h2>
 
-    <!-- Camera Capture & File Upload -->
-    <input type="file" id="upload-image" accept="image/*" capture="environment">
-    <br><br>
-    <button id="identify-button">Identify Plant</button>
+    <div id="container" style="margin-top: 20px;">
+        <!-- File input to select image -->
+        <input class="item" type="file" id="fileInput" accept="image/*" onchange="previewImage()" 
+               style="padding: 10px; font-size: 16px; border: 2px solid #4CAF50; border-radius: 5px; cursor: pointer;">
+
+        <!-- Image preview area -->
+        <div class="image" style="margin-top: 20px;">
+            <img id="imagePreview" style="max-width: 300px; max-height: 300px; border: 2px solid #4CAF50; border-radius: 8px;"/>
+        </div>
+
+        <!-- Camera Capture & File Upload -->
+        <br><br>
+        <input type="file" id="upload-image" accept="image/*" capture="environment" 
+               style="padding: 10px; font-size: 16px; border: 2px solid #4CAF50; border-radius: 5px; cursor: pointer;">
+        <br><br>
+
+        <!-- Identify Button (without inline styles) -->
+        <button id="identify-button">
+            Identify Plant
+        </button>
+    </div>
+
+    <script>
+    // Function to display the image preview
+    function previewImage() {
+        const fileInput = document.getElementById("fileInput");
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+        const img = document.getElementById("imagePreview");
+        img.src = e.target.result;
+        };
+
+        if (file) {
+        reader.readAsDataURL(file); // Converts the file to base64
+        }
+    }
+    </script>
 
     <script src="home/index.js"></script>
 </body>
