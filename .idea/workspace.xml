@@ -5,9 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="070263eb-dd66-4a77-8f8b-b7d7cfd75fb8" name="Changes" comment="undo deletions">
+      <change afterPath="$PROJECT_DIR$/achievements/achievements.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/achievements/achievements.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/achievements/achievements.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Summer2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/badge10plants.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/badge1stplant.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/badgetreehugger.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/badgeunknown.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/camera.css" beforeDir="false" afterPath="$PROJECT_DIR$/camera.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/camera.html" beforeDir="false" afterPath="$PROJECT_DIR$/camera.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/add_plants.html" beforeDir="false" afterPath="$PROJECT_DIR$/camera/add_plants.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/camera.css" beforeDir="false" afterPath="$PROJECT_DIR$/camera/camera.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/camera.html" beforeDir="false" afterPath="$PROJECT_DIR$/camera/camera.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map/map.css" beforeDir="false" afterPath="$PROJECT_DIR$/map/map.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/map/map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/map/map.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,20 +34,21 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;hang-ng0&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/OliviaJonathan/CivicHacks.git&quot;,
-    &quot;accountId&quot;: &quot;b56424e4-4074-4f86-baef-fbd1df57f68f&quot;
-  }
-}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -45,39 +58,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;JavaScript Debug.add_plants.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.camera.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/sophi/WebstormProjects/civichacks&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript Debug.achievements.html.executor": "Run",
+    "JavaScript Debug.index.html.executor": "Run",
+    "JavaScript Debug.map.html.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/sophi/WebstormProjects/civichacks",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;HTML&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "HTML"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\sophi\WebstormProjects\civichacks\src" />
       <recent name="C:\Users\sophi\WebstormProjects\civichacks" />
+      <recent name="C:\Users\sophi\WebstormProjects\civichacks\camera" />
+      <recent name="C:\Users\sophi\WebstormProjects\civichacks\plantdex" />
       <recent name="C:\Users\sophi\WebstormProjects\civichacks\home" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-WS-243.24978.60" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-WS-243.23654.157" />
       </set>
     </attachedChunks>
   </component>
@@ -92,8 +108,7 @@
       <workItem from="1740252779686" duration="226000" />
       <workItem from="1740253051002" duration="2025000" />
       <workItem from="1740255427520" duration="891000" />
-      <workItem from="1740266285049" duration="6279000" />
-      <workItem from="1740275864212" duration="3839000" />
+      <workItem from="1740256327069" duration="16500000" />
     </task>
     <task id="LOCAL-00001" summary="undo deletions">
       <option name="closed" value="true" />

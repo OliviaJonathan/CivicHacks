@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Discovered Plants</title>
-    <link rel="stylesheet" href="home/index.css"/>
+    <link rel="stylesheet" href="../home/index.css"/>
     <style>
         body {
             max-width: 1200px;
@@ -16,6 +16,21 @@
         h1 {
             text-align: center;
             margin-bottom: 30px;
+        }
+
+        /* Add a basic style for plant icons */
+        .plant-icon {
+            display: inline-block;
+            margin: 10px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .plant-thumbnail {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -33,6 +48,6 @@
             loadSavedPlants();  // Your existing function
         });
     </script>
-    <script src="home/index.js"></script>
+    <script src="../home/flashcard.js"></script>
 </body>
 </html>

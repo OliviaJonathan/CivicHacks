@@ -1,0 +1,302 @@
+Index: home/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Function to load all saved plants in `addplants.html`\r\n// function loadSavedPlants() {\r\n//     const plantsContainer = document.getElementById(\"plants-container\");\r\n//     let savedPlants = JSON.parse(localStorage.getItem(\"savedPlants\")) || [];\r\n\r\n//     console.log(\"Saved Plants:\", savedPlants);\r\n\r\n//     if (!plantsContainer) {\r\n//         console.error(\"⚠\uFE0F plants-container not found!\");\r\n//         return;\r\n//     }\r\n\r\n//     if (savedPlants.length === 0) {\r\n//         plantsContainer.innerHTML = \"<p>No plants discovered yet. Start exploring! \uD83C\uDF3F</p>\";\r\n//         return;\r\n//     }\r\n\r\n//     // Clear existing content\r\n//     plantsContainer.innerHTML = '';\r\n    \r\n//     // Create grid container for plant icons\r\n//     const gridContainer = document.createElement(\"div\");\r\n//     gridContainer.classList.add(\"plant-grid\");\r\n//     plantsContainer.appendChild(gridContainer);\r\n\r\n//     savedPlants.forEach(plant => {\r\n//         addPlantToPage(plant, gridContainer);\r\n//     });\r\n// }\r\n\r\n// Function to add a single plant card dynamically to `addplants.html`\r\nfunction addPlantToPage(plant, container) {\r\n    const plantItem = document.createElement(\"div\");\r\n    plantItem.classList.add(\"plant-icon\");\r\n    \r\n    // Display plant name with an icon and image\r\n    plantItem.innerHTML = `\r\n        <img src=\"${plant.image}\" alt=\"${plant.name}\" class=\"plant-thumbnail\">\r\n        <span>\uD83C\uDF3F ${plant.name}</span>\r\n    `;\r\n\r\n    // When clicked, save plant details and go to flashcard page\r\n    plantItem.addEventListener(\"click\", function () {\r\n        localStorage.setItem(\"selectedPlant\", JSON.stringify(plant));\r\n        window.location.href = \"flashcard.html\";\r\n    });\r\n\r\n    container.appendChild(plantItem);\r\n}\r\n\r\nfunction loadFlashcard() {\r\n    let plant = JSON.parse(localStorage.getItem(\"selectedPlant\"));\r\n\r\n    if (!plant) {\r\n        console.error(\"No plant selected.\");\r\n        return;\r\n    }\r\n\r\n    document.getElementById(\"plant-name\").textContent = `\uD83C\uDF3F ${plant.name}`;\r\n    document.getElementById(\"plant-image\").src = plant.image;\r\n    document.getElementById(\"fun-fact\").textContent = `\uD83D\uDCD6 ${plant.fact}`;\r\n    document.getElementById(\"location\").textContent = `\uD83C\uDF0D ${plant.location}`;\r\n    \r\n    // Update save button state based on whether plant is already saved\r\n    updateSaveButtonState(plant.name);\r\n}\r\n\r\nfunction updateSaveButtonState(plantName) {\r\n    let button = document.getElementById(\"save-button\");\r\n    let savedPlants = JSON.parse(localStorage.getItem(\"savedPlants\")) || [];\r\n    \r\n    if (savedPlants.some(plant => plant.name === plantName)) {\r\n        button.textContent = \"✅ Added to Collection\";\r\n        button.classList.add(\"saved\");\r\n        button.disabled = true;\r\n    } else {\r\n        button.textContent = \"\uD83D\uDCCD Save Plant to Home Garden!\";\r\n        button.classList.remove(\"saved\");\r\n        button.disabled = false;\r\n    }\r\n}\r\n\r\nfunction savePlant() {\r\n    let button = document.getElementById(\"save-button\");\r\n\r\n    const plantName = document.getElementById(\"plant-name\").innerText.trim().replace('\uD83C\uDF3F ', '');\r\n    const plantImage = document.getElementById(\"plant-image\").src;\r\n    const funFact = document.getElementById(\"fun-fact\").innerText.replace('\uD83D\uDCD6 ', '');\r\n    const location = document.getElementById(\"location\").innerText.replace('\uD83C\uDF0D ', '');\r\n\r\n    let savedPlants = JSON.parse(localStorage.getItem(\"savedPlants\")) || [];\r\n\r\n    // Check if plant already exists in saved collection\r\n    if (savedPlants.some(plant => plant.name === plantName)) {\r\n        alert(\"⚠\uFE0F This plant is already in your collection!\");\r\n        return;\r\n    }\r\n\r\n    button.textContent = \"✅ Added to Collection\";\r\n    button.classList.add(\"saved\");\r\n    button.disabled = true;\r\n\r\n    // Save new plant\r\n    savedPlants.push({ name: plantName, image: plantImage, fact: funFact, location: location });\r\n    localStorage.setItem(\"savedPlants\", JSON.stringify(savedPlants));\r\n\r\n    alert(\"✅ Plant saved to Home Garden!\");\r\n}\r\n// Add this to your existing index.js file\r\n\r\nfunction debugSavePlant() {\r\n    // Example plant for testing\r\n    const testPlant = {\r\n        name: \"Test Plant\",\r\n        image: \"https://via.placeholder.com/150\",\r\n        fact: \"This is a test plant\",\r\n        location: \"Test Location\"\r\n    };\r\n\r\n    let savedPlants = JSON.parse(localStorage.getItem(\"savedPlants\")) || [];\r\n    savedPlants.push(testPlant);\r\n    localStorage.setItem(\"savedPlants\", JSON.stringify(savedPlants));\r\n    \r\n    console.log(\"Plants after saving:\", savedPlants);\r\n    \r\n    // Reload the page to show the new plant\r\n    location.reload();\r\n}\r\n\r\n// Modify your existing loadSavedPlants function to add more logging\r\nfunction loadSavedPlants() {\r\n    const plantsContainer = document.getElementById(\"plants-container\");\r\n    let savedPlants = JSON.parse(localStorage.getItem(\"savedPlants\")) || [];\r\n\r\n    console.log(\"Loading saved plants:\", savedPlants);\r\n\r\n    if (!plantsContainer) {\r\n        console.error(\"⚠\uFE0F plants-container not found!\");\r\n        return;\r\n    }\r\n\r\n    if (savedPlants.length === 0) {\r\n        console.log(\"No plants found in storage\");\r\n        plantsContainer.innerHTML = \"<p>No plants discovered yet. Start exploring! \uD83C\uDF3F</p>\";\r\n        return;\r\n    }\r\n\r\n    // Clear existing content\r\n    plantsContainer.innerHTML = '';\r\n    \r\n    savedPlants.forEach(plant => {\r\n        console.log(\"Adding plant to page:\", plant);\r\n        addPlantToPage(plant, plantsContainer);\r\n    });\r\n}\r\n// Initialize pages\r\ndocument.addEventListener(\"DOMContentLoaded\", function () {\r\n    if (window.location.pathname.includes(\"flashcard.html\")) {\r\n        loadFlashcard();\r\n    } else if (window.location.pathname.includes(\"addplants.html\")) {\r\n        loadSavedPlants();\r\n    }\r\n});
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/home/index.js b/home/index.js
+--- a/home/index.js	(revision a921796ce8c9a391c3d294850cccb441d78e19aa)
++++ b/home/index.js	(date 1740278733167)
+@@ -1,32 +1,113 @@
+-// Function to load all saved plants in `addplants.html`
+-// function loadSavedPlants() {
+-//     const plantsContainer = document.getElementById("plants-container");
+-//     let savedPlants = JSON.parse(localStorage.getItem("savedPlants")) || [];
++// document.addEventListener("DOMContentLoaded", function () {
++//     console.log("✅ JS is running!");
++
++//     const plantData = JSON.parse(localStorage.getItem("selectedPlant"));
+ 
+-//     console.log("Saved Plants:", savedPlants);
++//     if (plantData) {
++//         console.log("🌱 Retrieved plant data:", plantData);
+ 
+-//     if (!plantsContainer) {
+-//         console.error("⚠️ plants-container not found!");
+-//         return;
++//         if (plantData.similar_images?.[0]?.url) {
++//             document.getElementById("plant-image").src = plantData.similar_images[0].url;
++//         }
++//         if (plantData.name) document.getElementById("plant-name").textContent = plantData.name;
++//     } else {
++//         console.warn("⚠️ No plant data found.");
+ //     }
+ 
+-//     if (savedPlants.length === 0) {
+-//         plantsContainer.innerHTML = "<p>No plants discovered yet. Start exploring! 🌿</p>";
+-//         return;
+-//     }
++//     // Find elements
++//     const identifyButton = document.getElementById("identify-button");
++//     const uploadImage = document.getElementById("upload-image");
+ 
+-//     // Clear existing content
+-//     plantsContainer.innerHTML = '';
+-    
+-//     // Create grid container for plant icons
+-//     const gridContainer = document.createElement("div");
+-//     gridContainer.classList.add("plant-grid");
+-//     plantsContainer.appendChild(gridContainer);
++//     console.log("🔍 Checking elements...");
++//     console.log("Identify Button:", identifyButton);
++//     console.log("Upload Image Input:", uploadImage);
++
++//     if (identifyButton && uploadImage) {
++//         identifyButton.addEventListener("click", function () {
++//             console.log("🚀 Button Clicked!");
+ 
+-//     savedPlants.forEach(plant => {
+-//         addPlantToPage(plant, gridContainer);
+-//     });
+-// }
++//             const file = uploadImage.files[0]; // Get the selected image file
++//             if (file) {
++//                 console.log("📸 Selected Image:", file.name);
++//                 identifyPlant(file); // Call the function to process the image
++//             } else {
++//                 alert("⚠️ Please select an image first.");
++//             }
++//         });
++//     } else {
++//         console.error("❌ Identify button or file input not found.");
++//     }
++// });
++
++document.getElementById("identify-button").addEventListener("click", function () {
++    const fileInput = document.getElementById("upload-image");
++    const file = fileInput.files[0];
++
++    if (!file) {
++        alert("Please upload an image first!");
++        return;
++    }
++
++    identifyPlant(file);
++});
++
++async function identifyPlant(file) {
++    console.log("Preparing image for API...");
++
++    const reader = new FileReader();
++    reader.readAsDataURL(file);
++
++    reader.onloadend = async function () {
++        const base64Image = reader.result.split(',')[1]; // Extract base64 data
++        console.log("Base64 Image Data (First 100 chars):", base64Image.substring(0, 100));
++    
++        const apiKey = "QV0GK7zdEok9dVWzJecF2c3A5XkyYhfsgc3WG9xV7RLJBq06dq";
++        const apiUrl = "https://plant.id/api/v3/identification?details=common_names,url,description,taxonomy,rank,gbif_id,inaturalist_id,image,edible_parts,watering,common_uses,cultural_significance&language=en";
++
++        const requestBody = {
++            images: [base64Image],  // Send only the Base64 data
++            latitude: 0,
++            longitude: 0,
++            similar_images: true,
++        };
++
++        console.log("📤 Sending API Request:", JSON.stringify(requestBody, null, 2));
++
++        try {
++            const response = await fetch(apiUrl, {
++                method: "POST",
++                headers: {
++                    "Api-Key": apiKey,
++                    "Content-Type": "application/json"
++                },
++                body: JSON.stringify(requestBody)
++            });
++
++            if (!response.ok) {
++                throw new Error(`API request failed with status ${response.status}`);
++            }
++
++            const result = await response.json();
++            console.log("🌱 API Response:", result);
++            console.log("🌱 Full API Response:", JSON.stringify(result, null, 2));
++
++            // Extract the first suggestion (most probable plant match)
++            const plantData = result?.result?.classification?.suggestions?.[0];
++
++            if (plantData) {
++                console.log("✅ Saving Plant to Local Storage:", plantData);
++                localStorage.setItem("selectedPlant", JSON.stringify(plantData));
++                window.location.href = "flashcard.html";
++            } else {
++                console.error("❌ No plant suggestion found in API response.");
++            }
++            // No fallback strategy—if no plant is found, nothing happens.
++
++        } catch (error) {
++            console.error("❌ Error identifying plant:", error);
++        }
++    };
++}
+ 
+ // Function to add a single plant card dynamically to `addplants.html`
+ function addPlantToPage(plant, container) {
+@@ -56,10 +137,10 @@
+         return;
+     }
+ 
+-    document.getElementById("plant-name").textContent = `🌿 ${plant.name}`;
++    document.getElementById("plant-name").textContent = ` ${plant.name}`;
+     document.getElementById("plant-image").src = plant.image;
+-    document.getElementById("fun-fact").textContent = `📖 ${plant.fact}`;
+-    document.getElementById("location").textContent = `🌍 ${plant.location}`;
++    document.getElementById("fun-fact").textContent = ` ${plant.fact}`;
++    document.getElementById("location").textContent = ` ${plant.location}`;
+     
+     // Update save button state based on whether plant is already saved
+     updateSaveButtonState(plant.name);
+@@ -153,6 +234,8 @@
+         addPlantToPage(plant, plantsContainer);
+     });
+ }
++
++
+ // Initialize pages
+ document.addEventListener("DOMContentLoaded", function () {
+     if (window.location.pathname.includes("flashcard.html")) {
+@@ -160,4 +243,4 @@
+     } else if (window.location.pathname.includes("addplants.html")) {
+         loadSavedPlants();
+     }
+-});
+\ No newline at end of file
++});
+Index: home/index.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');\r\nhtml{\r\n    max-height: 100%;\r\n    width: 100%;\r\n    font-family: \"Jersey 10\", serif;\r\n    letter-spacing: .2rem;\r\n}\r\n.game{\r\n    height: 100%;\r\n    background-color: #86A59C;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.flashcard{\r\n    height: 100%;\r\n    background-color: #86A59C;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\nmain{\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n#container{\r\n    height: 80vh;\r\n    width: 45vh;\r\n    display: flex;\r\n    align-items: flex-end;\r\n    justify-content: center;\r\n    background-color: #e1e0e0;\r\n    background-image: url('../src/Background.png');\r\n    background-position: bottom;\r\n    background-size: 100%;\r\n    border-radius: 2vw;\r\n    position: relative; /* position items relative within the container*/\r\n    padding-bottom: 1vh;\r\n}\r\n\r\n\r\n.infocard {\r\n    background: #ffffff;\r\n    padding: 20px;\r\n    border-radius: 15px;\r\n    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);\r\n    text-align: center;\r\n    max-width: 313px;\r\n}\r\n\r\nbutton {\r\n    background-color: #388e3c;\r\n    color: white;\r\n    border: none;\r\n    padding: 10px;\r\n    border-radius: 8px;\r\n    cursor: pointer;\r\n    margin-top: 10px;\r\n    width: 100%;\r\n}\r\n\r\nbutton:hover {\r\n    background-color: #2e7d32;\r\n}\r\n\r\nbutton.saved {\r\n    background-color: gray;\r\n    cursor: not-allowed;\r\n}\r\n\r\nnav{\r\n    display: flex;\r\n    flex-direction: row;\r\n}\r\nimg {\r\n    max-width: 10vw;\r\n    max-height: 10vw;\r\n}\r\n\r\n.plant-grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));\r\n    gap: 20px;\r\n    padding: 20px;\r\n}\r\n\r\n.plant-icon {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    padding: 15px;\r\n    border: 1px solid #ccc;\r\n    border-radius: 8px;\r\n    cursor: pointer;\r\n    transition: transform 0.2s, box-shadow 0.2s;\r\n}\r\n\r\n.plant-icon:hover {\r\n    transform: translateY(-5px);\r\n    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);\r\n}\r\n\r\n.plant-thumbnail {\r\n    width: 100px;\r\n    height: 100px;\r\n    object-fit: cover;\r\n    border-radius: 50%;\r\n    margin-bottom: 10px;\r\n}\r\n\r\n.plant-icon span {\r\n    text-align: center;\r\n    font-weight: 500;\r\n}\r\n\r\n/* Flashcard styles */\r\n.infocard {\r\n    max-width: 400px;\r\n    margin: 20px auto;\r\n    padding: 20px;\r\n    border-radius: 12px;\r\n    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\r\n    background-color: white;\r\n}\r\n\r\n#save-button {\r\n    width: 100%;\r\n    padding: 10px;\r\n    margin-top: 15px;\r\n    border: none;\r\n    border-radius: 6px;\r\n    background-color: #4CAF50;\r\n    color: white;\r\n    cursor: pointer;\r\n    transition: background-color 0.3s;\r\n}\r\n\r\n#save-button:disabled {\r\n    background-color: #cccccc;\r\n    cursor: not-allowed;\r\n}\r\n\r\n#save-button.saved {\r\n    background-color: #45a049;\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/home/index.css b/home/index.css
+--- a/home/index.css	(revision a921796ce8c9a391c3d294850cccb441d78e19aa)
++++ b/home/index.css	(date 1740278733166)
+@@ -23,6 +23,10 @@
+     justify-content: center;
+ }
+ 
++.infocard .p {
++    font-family: 'Times New Roman', Times, serif;
++}
++
+ main{
+     display: flex;
+     flex-direction: column;
+Index: file_upload_temp.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/file_upload_temp.html b/file_upload_temp.html
+new file mode 100644
+--- /dev/null	(date 1740278733165)
++++ b/file_upload_temp.html	(date 1740278733165)
+@@ -0,0 +1,21 @@
++<!DOCTYPE html>
++<html lang="en">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <title>Identify a Plant</title>
++    <link rel="stylesheet" href="home/index.css">
++</head>
++<body>
++    <h1>🌱 Identify a Plant</h1>
++
++    <!-- Camera Capture & File Upload -->
++    <input type="file" id="upload-image" accept="image/*" capture="environment">
++    <br><br>
++    <button id="identify-button">Identify Plant</button>
++
++    <script src="home/index.js"></script>
++</body>
++</html>
++
++
+Index: plantdex/flashcard.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>flashcard</title>\r\n    <link rel=\"stylesheet\" href=\"../plantdex/flashcard.css\"/>\r\n</head>\r\n<body class= \"flashcard\">\r\n    <main>\r\n        <div class=\"infocard\">\r\n            <h2 id=\"plant-name\">\uD83C\uDF3F Lorem Ipsum</h2>\r\n            <img id=\"plant-image\" src=\"https://via.placeholder.com/150\" alt=\"Plant Image\">\r\n            <p id=\"fun-fact\">\uD83D\uDCD6 This plant has unique characteristics.</p>\r\n            <p id=\"location\">\uD83C\uDF0D Also found in: XYZ Location</p>\r\n            <button id=\"save-button\" onclick=\"savePlant()\">\uD83D\uDCCD Save Plant to Home Garden!</button>\r\n        </div>    \r\n    </main>\r\n<script src=\"../home/index.js\"></script>\r\n</body>\r\n</html>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/plantdex/flashcard.html b/plantdex/flashcard.html
+--- a/plantdex/flashcard.html	(revision a921796ce8c9a391c3d294850cccb441d78e19aa)
++++ b/plantdex/flashcard.html	(date 1740278788318)
+@@ -9,13 +9,19 @@
+ <body class= "flashcard">
+     <main>
+         <div class="infocard">
+-            <h2 id="plant-name">🌿 Lorem Ipsum</h2>
+-            <img id="plant-image" src="https://via.placeholder.com/150" alt="Plant Image">
+-            <p id="fun-fact">📖 This plant has unique characteristics.</p>
+-            <p id="location">🌍 Also found in: XYZ Location</p>
+-            <button id="save-button" onclick="savePlant()">📍 Save Plant to Home Garden!</button>
+-        </div>    
++            <img id="plant-image" src="" alt="Plant Image">
++            <h2 id="plant-name">Plant Name</h2>
++            <p id="plant-description">Description: <span></span></p>
++            <p id="plant-common-names">Common Names: <span></span></p>
++            <p id="plant-url">URL: <span></span></p>
++            <p id="plant-taxonomy">Taxonomy: <span></span></p>
++            <p id="plant-rank">Rank: <span></span></p>
++            <p id="plant-gbif-id">GBIF ID: <span></span></p>
++            <p id="plant-edible-parts">Edible Parts: <span></span></p>
++            <p id="plant-common-uses">Common Uses: <span></span></p>
++            <p id="plant-cultural-significance">Cultural Significance: <span></span></p>
++        </div>
+     </main>
+-<script src="../home/index.js"></script>
++<script src="home/flashcard.js"></script>
+ </body>
+ </html>
+Index: home/flashcard.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/home/flashcard.js b/home/flashcard.js
+new file mode 100644
+--- /dev/null	(date 1740278733166)
++++ b/home/flashcard.js	(date 1740278733166)
+@@ -0,0 +1,26 @@
++document.addEventListener("DOMContentLoaded", function () {
++    const plantData = JSON.parse(localStorage.getItem("selectedPlant"));
++
++    if (!plantData) {
++        alert("No plant data found! Redirecting...");
++        window.location.href = "index.html";
++        return;
++    }
++
++    console.log("🌱 Retrieved plant data:", plantData);
++
++    // Set plant image (fallback to placeholder if missing)
++    document.getElementById("plant-image").src = plantData.similar_images?.[0]?.url || "placeholder.jpg";
++
++    // Populate plant details safely
++    document.getElementById("plant-name").textContent = plantData.name || "Unknown";
++    document.getElementById("plant-description span").textContent = plantData.details?.description || "No description available";
++    document.getElementById("plant-common-names span").textContent = plantData.details?.common_names?.join(", ") || "N/A";
++    document.getElementById("plant-taxonomy span").textContent = plantData.details?.taxonomy?.family || "N/A";
++    document.getElementById("plant-rank span").textContent = plantData.details?.rank || "N/A";
++    document.getElementById("plant-gbif-id span").textContent = plantData.details?.gbif_id || "N/A";
++    document.getElementById("plant-inaturalist-id span").textContent = plantData.details?.inaturalist_id || "N/A";
++    document.getElementById("plant-edible-parts span").textContent = plantData.details?.edible_parts?.join(", ") || "N/A";
++    document.getElementById("plant-watering span").textContent = plantData.details?.watering || "N/A";
++    document.getElementById("plant-propagation span").textContent = plantData.details?.propagation_methods?.join(", ") || "N/A";
++});
