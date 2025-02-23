@@ -20,41 +20,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-function loadSavedPlants() {
-    const plantsContainer = document.getElementById("plants-container");
-    const savedPlants = JSON.parse(localStorage.getItem("savedPlants")) || [];
-
-    if (!plantsContainer) {
-        console.error("Plants container not found!");
-        return;
-    }
-
-    if (savedPlants.length === 0) {
-        plantsContainer.innerHTML = "<p>No plants discovered yet. Start exploring! 🌿</p>";
-        return;
-    }
-
-    // Clear and populate container
-    plantsContainer.innerHTML = '';
-    savedPlants.forEach(plant => addPlantToGrid(plant, plantsContainer));
-}
-
-function addPlantToGrid(plant, container) {
-    const plantCard = document.createElement("div");
-    plantCard.classList.add("plant-card");
-    
-    plantCard.innerHTML = `
-        <img src="${plant.image}" alt="${plant.name}" class="plant-thumbnail">
-        <h3>${plant.name}</h3>
-    `;
-
-    plantCard.addEventListener("click", () => {
-        localStorage.setItem("selectedPlant", JSON.stringify(plant));
-        window.location.href = "../flashcard.html";
-    });
-
-    container.appendChild(plantCard);
-}
 
 document.getElementById("identify-button").addEventListener("click", function () {
     const fileInput = document.getElementById("upload-image");
@@ -83,8 +48,8 @@ async function identifyPlant(file) {
 
         const requestBody = {
             images: [base64Image],  // Send only the Base64 data
-            latitude: 0,
-            longitude: 0,
+            latitude: 71,
+            longitude: 42,
             similar_images: true,
         };
 
@@ -114,7 +79,7 @@ async function identifyPlant(file) {
             if (plantData) {
                 console.log("✅ Saving Plant to Local Storage:", plantData);
                 localStorage.setItem("selectedPlant", JSON.stringify(plantData));
-                window.location.href = "../flashcard.html";
+                window.location.href = "./flashcard.html";
             } else {
                 console.error("❌ No plant suggestion found in API response.");
             }
@@ -125,14 +90,7 @@ async function identifyPlant(file) {
         }
     };
 }
-// Initialize pages
-document.addEventListener("DOMContentLoaded", function () {
-    if (window.location.pathname.includes("flashcard.html")) {
-        loadFlashcard();
-    } else if (window.location.pathname.includes("addplants.html")) {
-        loadSavedPlants();
-    }
-});
+
 //dropdown button
 const dropdownButton = document.querySelector('.dropdown-button');
 const dropdownContent = document.querySelector('.dropdown-content');
